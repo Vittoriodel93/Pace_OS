@@ -1,0 +1,41 @@
+name: Validate repository
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Check required documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s README.md
+          test -s CHANGELOG.md
+          test -s docs/architecture/ARCHITECTURE.md
+          test -s docs/roadmap/ROADMAP.md
+          echo "Required documentation is present."
+      - name: Check whitespace
+        run: git diff --check
+      - name: Check shell syntax when scripts exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -d '' scripts < <(find . -type f -name '*.sh' -not -path './.git/*' -print0)
+          if (("${#scripts[@]}" == 0)); then
+            echo "No shell scripts yet; skipping."
+            exit 0
+          fi
+          for script in "${scripts[@]}"; do
+            bash -n "$script"
+          done
