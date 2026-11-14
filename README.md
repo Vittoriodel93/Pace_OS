@@ -1,50 +1,65 @@
 # PaceOS
 
-**Sistema operativo Linux personalizzato, moderno e leggero, sviluppato a partire da AnduinOS 1.4.**
+**Semplice. Veloce. Tuo.**  
+Sistema operativo Linux personalizzato con desktop dedicato Pace Shell (Qt 6/QML).
 
-![Status](https://img.shields.io/badge/stato-in%20sviluppo-orange) ![Base](https://img.shields.io/badge/base-AnduinOS%201.4-blue) ![Visibility](https://img.shields.io/badge/repository-private-purple)
+![Status](https://img.shields.io/badge/versione-0.1.0-blue) ![Base](https://img.shields.io/badge/base-AnduinOS%201.4-orange) ![Repository](https://img.shields.io/badge/repository-private-purple)
 
-> PaceOS è in fase di sviluppo. Questa repository contiene la struttura iniziale e la documentazione; non contiene ancora una ISO pronta all'installazione.
+> PaceOS 0.1.0 è una prima fondazione di progetto: documentazione tecnica, struttura repository e scaffold Qt/QML. Non è una ISO installabile e la shell non è ancora dichiarata compilata o pronta per l'uso quotidiano.
 
 ## Visione
-PaceOS mira a offrire un desktop moderno, familiare e accessibile, con approccio local-first e supporto multilingua.
 
-Obiettivi:
-- Branding PaceOS: logo, icone, wallpaper e schermata di avvio.
-- Desktop personalizzato e menu contestuali intuitivi.
-- Lingua italiana e supporto multilingua.
-- Applicazioni e strumenti integrati.
-- AI, sincronizzazione cloud, strumenti sviluppatore e collegamento Android come componenti pianificati.
-- Modalità gaming e compatibilità applicativa da verificare caso per caso.
-- Build ripetibile, test automatici e documentazione.
+PaceOS mira a offrire un desktop moderno, familiare e accessibile, con approccio local-first:
+- Pace Shell in Qt 6/QML.
+- Interfaccia desktop, taskbar, Start e gestione finestre.
+- PaceAI, PaceCloud, PaceConnect e Game Mode come servizi pianificati.
+- Localizzazione italiana e multilingua.
+- Compatibilità Windows tramite Wine/Proton da verificare app per app.
 
 ## Base tecnica
-La base scelta è **AnduinOS 1.4**. Il codice upstream sarà integrato dopo aver verificato revisione esatta, licenze e modifiche già presenti nella copia locale. La directory originale non deve essere sovrascritta senza backup.
 
-## Aree del progetto
-| Percorso | Scopo |
+La base di lavoro attuale resta **AnduinOS 1.4**. Il piano tecnico esplora Arch come possibile base finale, ma qualsiasi cambio richiede una decisione e una migrazione documentata. Il codice upstream AnduinOS non è ancora importato in questa repository: l'integrazione avverrà dopo inventario e backup della copia locale.
+
+## Repository
+
+| Percorso | Contenuto |
 |---|---|
-| `branding/` | Loghi, icone, wallpaper e boot screen |
-| `desktop/` | Personalizzazione desktop |
-| `applications/` | Applicazioni PaceOS |
-| `packages/` | Configurazioni pacchetti |
-| `src/mods/` | Moduli di personalizzazione |
-| `kernel/` | Configurazioni e note kernel |
-| `scripts/` | Automazione e build |
-| `tests/` | Test e verifiche |
-| `docs/` | Documentazione tecnica |
+| `shell/` | Scaffold desktop Pace Shell Qt 6/QML |
+| `docs/PaceOS_Piano_Tecnico.md` | Piano tecnico completo |
+| `docs/architecture/` | Architettura |
+| `docs/roadmap/` | Roadmap |
+| `docs/development/` | Note sviluppo |
+| `branding/` | Logo, wallpaper e boot splash |
+| `src/mods/` | Moduli personalizzazione sistema |
+| `services/` | Servizi Pace pianificati |
+| `packaging/` | Packaging e ISO pianificati |
+| `kernel/` | Note kernel |
+| `.github/workflows/` | Controlli automatici repository |
 
-## Stato
+## Build prototipo shell
+
+Requisiti: CMake >= 3.20, Ninja, compilatore C++17 e Qt 6 Quick/Quick Controls 2.
+
+```bash
+cd shell
+cmake -B build -GNinja -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cmake --build build
+./build/paceshell
+```
+
+La build deve essere verificata sulla macchina di sviluppo. Eseguire prima in una sessione grafica esistente o VM; non sostituire la shell di sistema.
+
+## Stato 0.1.0
 - [x] Repository privata e struttura iniziale.
-- [ ] Importazione controllata della base AnduinOS 1.4.
-- [ ] Inventario modifiche locali, dipendenze e licenze.
-- [ ] Rebranding e desktop PaceOS.
-- [ ] Applicazioni e servizi.
-- [ ] Build ISO ripetibile e test in VM.
+- [x] Piano tecnico inserito.
+- [x] Scaffold Qt/QML inserito.
+- [ ] Compilazione e test Qt verificati.
+- [ ] Importazione controllata AnduinOS 1.4.
+- [ ] Wallpaper e asset originali importati.
+- [ ] Shell completa, servizi e ISO.
 
-Consulta [architettura](docs/architecture/ARCHITECTURE.md), [roadmap](docs/roadmap/ROADMAP.md) e [sviluppo](docs/development/DEVELOPMENT.md).
+## Sicurezza e licenze
 
-## Sicurezza
-Non committare password, token, chiavi API, certificati privati o dati personali. Non inserire ISO e artefatti di build nella cronologia Git. Testare kernel e installer in macchina virtuale prima dell'hardware.
+Non committare password, token, chiavi API, certificati privati o dati personali. Verificare le licenze di AnduinOS e di ogni componente prima della redistribuzione. Non è stata ancora dichiarata una licenza globale PaceOS.
 
-La documentazione principale è in italiano. PaceOS è un progetto indipendente in sviluppo.
+Consulta [CHANGELOG](CHANGELOG.md), [ROADMAP](docs/roadmap/ROADMAP.md), [ARCHITECTURE](docs/architecture/ARCHITECTURE.md) e [UPSTREAM](docs/upstream/UPSTREAM.md).
