@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>wallpaper.jpg</file>
+        <!-- Il wallpaper verrà aggiunto come risorsa nella prossima revisione asset. -->
     </qresource>
 </RCC>
